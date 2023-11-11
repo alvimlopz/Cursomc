@@ -1,61 +1,62 @@
 package com.alvimcode.cursomc.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Categoria implements Serializable{
+public class Cidade implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String name;
+	private String nome;
 	
-	@ManyToMany(mappedBy="categorias")
-	@JsonManagedReference
-	private List<Produto> produtos = new ArrayList<>();
-	public Categoria() {
+	@ManyToOne
+	@JoinColumn(name="estado_id")
+	private Estado estado;
+
+
+	public Cidade() {
 	}
 
-	public Categoria(Integer id, String name) {
+	public Cidade(Integer id, String nome) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.nome = nome;
 	}
 
 	public Integer getId() {
 		return id;
 	}
 
-	public List<Produto> getProdutos() {
-		return produtos;
-	}
-
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
-	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public String getName() {
-		return name;
+	
+	public Estado getEstado() {
+		return estado;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	@Override
@@ -71,7 +72,7 @@ public class Categoria implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Categoria other = (Categoria) obj;
+		Cidade other = (Cidade) obj;
 		return Objects.equals(id, other.id);
 	}
 

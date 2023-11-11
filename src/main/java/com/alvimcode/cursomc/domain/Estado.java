@@ -5,57 +5,57 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
-public class Categoria implements Serializable{
+public class Estado implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String name;
+	private String nome;
+
+	@OneToMany(mappedBy = "estado")
+	private List<Cidade> cidades = new ArrayList<>();
+
 	
-	@ManyToMany(mappedBy="categorias")
-	@JsonManagedReference
-	private List<Produto> produtos = new ArrayList<>();
-	public Categoria() {
+	public Estado() {
 	}
 
-	public Categoria(Integer id, String name) {
+	public Estado(Integer id, String nome, Estado estado) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.nome = nome;
 	}
 
 	public Integer getId() {
 		return id;
 	}
 
-	public List<Produto> getProdutos() {
-		return produtos;
-	}
-
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
-	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public List<Cidade> getCidades() {
+		return cidades;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setCidades(List<Cidade> cidades) {
+		this.cidades = cidades;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class Categoria implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Categoria other = (Categoria) obj;
+		Estado other = (Estado) obj;
 		return Objects.equals(id, other.id);
 	}
 

@@ -9,8 +9,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 import com.alvimcode.cursomc.domain.Categoria;
+import com.alvimcode.cursomc.domain.Cidade;
+import com.alvimcode.cursomc.domain.Estado;
 import com.alvimcode.cursomc.domain.Produto;
 import com.alvimcode.cursomc.repositories.CategoriaRepository;
+import com.alvimcode.cursomc.repositories.CidadeRepository;
+import com.alvimcode.cursomc.repositories.EstadoRepository;
 import com.alvimcode.cursomc.repositories.ProdutoRepository;
 
 @SpringBootApplication
@@ -22,6 +26,10 @@ public class CursomcApplication implements CommandLineRunner{
 	
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	@Autowired
+	private EstadoRepository estadoRepository;
+	@Autowired
+	private CidadeRepository cidadeRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -43,6 +51,12 @@ public class CursomcApplication implements CommandLineRunner{
 		p1.getCategoria().addAll(Arrays.asList(cat1));
 		p2.getCategoria().addAll(Arrays.asList(cat1, cat2));
 		p3.getCategoria().addAll(Arrays.asList(cat1));
+		
+		Estado est1 = new Estado(null, "minas Gerais", null);
+		Estado est2 = new Estado(null, "Para", null);
+		
+		Cidade c1 = new Cidade();
+		Cidade c2 = new Cidade();
 		
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
