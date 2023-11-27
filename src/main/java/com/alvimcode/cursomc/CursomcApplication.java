@@ -14,6 +14,8 @@ import com.alvimcode.cursomc.domain.Estado;
 import com.alvimcode.cursomc.domain.Produto;
 import com.alvimcode.cursomc.repositories.CategoriaRepository;
 import com.alvimcode.cursomc.repositories.CidadeRepository;
+import com.alvimcode.cursomc.repositories.ClienteRepository;
+import com.alvimcode.cursomc.repositories.EnderecoRepository;
 import com.alvimcode.cursomc.repositories.EstadoRepository;
 import com.alvimcode.cursomc.repositories.ProdutoRepository;
 
@@ -30,6 +32,10 @@ public class CursomcApplication implements CommandLineRunner{
 	private EstadoRepository estadoRepository;
 	@Autowired
 	private CidadeRepository cidadeRepository;
+	@Autowired
+	private ClienteRepository clienteRepository;
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
