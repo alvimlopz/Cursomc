@@ -2,6 +2,9 @@ package com.alvimcode.cursomc.domain;
 
 import com.alvimcode.cursomc.domain.enums.EstadoPagamento;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class PagamentoComCartao extends Pagamento {
 
 	private static final long serialVersionUID = 1L;
