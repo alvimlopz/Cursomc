@@ -11,12 +11,14 @@ import org.springframework.context.annotation.ComponentScan;
 import com.alvimcode.cursomc.domain.Categoria;
 import com.alvimcode.cursomc.domain.Cidade;
 import com.alvimcode.cursomc.domain.Estado;
+import com.alvimcode.cursomc.domain.ItemPedido;
 import com.alvimcode.cursomc.domain.Produto;
 import com.alvimcode.cursomc.repositories.CategoriaRepository;
 import com.alvimcode.cursomc.repositories.CidadeRepository;
 import com.alvimcode.cursomc.repositories.ClienteRepository;
 import com.alvimcode.cursomc.repositories.EnderecoRepository;
 import com.alvimcode.cursomc.repositories.EstadoRepository;
+import com.alvimcode.cursomc.repositories.ItemPedidoRepository;
 import com.alvimcode.cursomc.repositories.ProdutoRepository;
 
 @SpringBootApplication
@@ -36,6 +38,8 @@ public class CursomcApplication implements CommandLineRunner{
 	private ClienteRepository clienteRepository;
 	@Autowired
 	private EnderecoRepository enderecoRepository;
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
